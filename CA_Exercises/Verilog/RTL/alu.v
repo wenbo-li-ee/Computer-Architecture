@@ -13,10 +13,10 @@
 module alu #(
    parameter integer DATA_W = 16
    )(
-		input   wire signed [DATA_W-1:0] alu_in_0,
-      input   wire signed [DATA_W-1:0] alu_in_1,
-      input   wire        [       3:0] alu_ctrl,
-		output  reg  signed [DATA_W-1:0] alu_out,
+		input   wire signed [DATA_W-1:0] alu_in_0,      //first operand
+      input   wire signed [DATA_W-1:0] alu_in_1,      //second operand
+      input   wire        [       3:0] alu_ctrl,      //decide which operation, e.g. add, sll, sub etc
+		output  reg  signed [DATA_W-1:0] alu_out,       //result of the operation
 		output  reg		                  zero_flag,
       output  reg                      overflow
    );
@@ -32,6 +32,7 @@ module alu #(
    parameter [3:0] SRL_OP = 4'd4;
    parameter [3:0] SUB_OP = 4'd6;
    parameter [3:0] SLT_OP = 4'd7;
+   parameter [3:0] MUL_OP = 4'd8;
 
 
    //REG AND WIRE DECLARATION
@@ -59,6 +60,7 @@ module alu #(
 
    //ARITHMETIC and LOGIC OPERATIONS
    always@(*)begin
+      mul_out  =   alu_in_0 * alu_in_1;
       add_out  =   alu_in_0 + alu_in_1;
       sll_out  =   alu_in_0 << alu_in_1;
       srl_out  =   alu_in_0 >> alu_in_1;
@@ -73,6 +75,7 @@ module alu #(
    //blocks described above
 	always @(*) begin
 		case (alu_ctrl)
+         
 			AND_OP:  alu_out = and_out;
 			OR_OP:   alu_out =  or_out;
 			ADD_OP:  alu_out = add_out;			
@@ -80,6 +83,7 @@ module alu #(
 			SLT_OP:  alu_out = slt_out;
 			SLL_OP:  alu_out = sll_out;
 			SRL_OP:  alu_out = srl_out;
+         MUL_OP:  alu_out = mul_out;
 			default: alu_out =     'd0;
 		endcase
 	end

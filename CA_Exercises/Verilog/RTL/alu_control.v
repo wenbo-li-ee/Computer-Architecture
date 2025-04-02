@@ -2,8 +2,9 @@
 //Function: ALU control is a combinational circuit that takes the ALU control signals from the Control unit as well as the function field of the instruction, and generates the control signals for the ALU
 
 module alu_control(
-      input wire       func7_5,
-      input wire [2:0] func3,
+      input wire       func7_5,        //instruction[30]
+      input wire       func7_0,        //instruction[25]
+      input wire [2:0] func3,          //instruction[14:12]  funct3
 		input wire [1:0] alu_op,
 		output reg [3:0] alu_control
    );
@@ -17,6 +18,10 @@ module alu_control(
 
    //The ALU control codes can be found
    //in chapter 4.4 of the book.
+   /*
+   Need a control code for MUL, but it's not specified, just make it 1000 here
+   */
+   parameter [3:0] MUL_OP        = 4'd8;
    parameter [3:0] AND_OP        = 4'd0;
    parameter [3:0] OR_OP         = 4'd1;
    parameter [3:0] ADD_OP        = 4'd2;
@@ -26,22 +31,26 @@ module alu_control(
    parameter [3:0] SLT_OP        = 4'd7;
 
 
+
    //The decoding of the instruction funtion field into the desired
    //alu operation can be found in Figure 4.12 of the Patterson Book,
    //section 4.4
-   wire [3:0] function_field = {func7_5, func3};
-   parameter [3:0] FUNC_ADD      = 4'b0000;
-   parameter [3:0] FUNC_SUB      = 4'b1000;
-   parameter [3:0] FUNC_AND      = 4'b0111;
-   parameter [3:0] FUNC_OR       = 4'b0110;
-   parameter [3:0] FUNC_SLT      = 4'b0010;
-   parameter [3:0] FUNC_SLL      = 4'b0001;
-   parameter [3:0] FUNC_SRL      = 4'b0101;
+   wire [4:0] function_field = {func7_5, func7_0, func3};
+   parameter [4:0] FUNC_MUL      = 5'b01000;
+   parameter [4:0] FUNC_ADD      = 5'b00000;
+   parameter [4:0] FUNC_SUB      = 5'b10000;
+   parameter [4:0] FUNC_AND      = 5'b00111;
+   parameter [4:0] FUNC_OR       = 5'b00110;
+   parameter [4:0] FUNC_SLT      = 5'b00010;
+   parameter [4:0] FUNC_SLL      = 5'b00001;
+   parameter [4:0] FUNC_SRL      = 5'b00101;
+   
 
 	reg [3:0] rtype_op;
    
    always @(*) begin
 		case(function_field)
+         FUNC_MUL :  rtype_op = MUL_OP;
 		   FUNC_ADD	:  rtype_op = ADD_OP;
 		   FUNC_SUB	:  rtype_op = SUB_OP;
 		   FUNC_AND	:  rtype_op = AND_OP;
