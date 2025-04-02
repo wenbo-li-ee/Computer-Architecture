@@ -62,7 +62,7 @@ module alu #(
    //ARITHMETIC and LOGIC OPERATIONS
    always@(*)begin
       full_mul_out  =   alu_in_0 * alu_in_1;
-      mul_out  =   full_mult_out[DATA_W-1:0];
+      mul_out  =   full_mul_out[DATA_W-1:0];
       add_out  =   alu_in_0 + alu_in_1;
       sll_out  =   alu_in_0 << alu_in_1;
       srl_out  =   alu_in_0 >> alu_in_1;
