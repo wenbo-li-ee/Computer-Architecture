@@ -39,7 +39,7 @@ module alu #(
    reg signed [2*DATA_W-1:0] full_mult_out;
    reg signed [DATA_W-1:0]   mul_out,sub_out,add_out,and_out,or_out,
                              nor_out,slt_out, sll_out, srl_out;
-	reg 		                 overflow_add,overflow_sub,
+	reg 		                 overflow_add,overflow_sub,overflow_mul,
                              msb_equal_flag;
    
    
@@ -119,13 +119,17 @@ module alu #(
       end
    end
 
+   always@(*) begin
+       overflow_mul = |full_mul_out[2*DATA_W-1 : DATA_W];  // 检查高位是否非0
+   end
+
    always@(*)begin
       if(alu_ctrl == ADD_OP)
          overflow = overflow_add;
       else if(alu_ctrl == SUB_OP)
          overflow = overflow_sub;
       else 
-         overflow = |full_mul_out[2*DATA_W-1 : DATA_W];
+         overflow = overflow_mul;
   end 
 
 
