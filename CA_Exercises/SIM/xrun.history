@@ -1,0 +1,3 @@
+s1(06Mar2025:08:35:59):  xrun +sv -64bit -f files_verilog.f -top cpu_tb -timescale 1ns/10ps -access +rwc -allowredefinition -linedebug -gui 
+s2(06Mar2025:10:08:05):  xrun +sv -64bit -f files_verilog.f -top cpu_tb -timescale 1ns/10ps -access +rwc -allowredefinition -linedebug -gui 
+s3(06Mar2025:10:21:52):  xrun +sv -64bit -f files_verilog.f -top cpu_tb -timescale 1ns/10ps -access +rwc -allowredefinition -linedebug -gui 
