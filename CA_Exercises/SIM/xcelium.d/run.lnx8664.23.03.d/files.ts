@@ -1,8 +1,8 @@
-1741156226 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/alu.v
-1741156226 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/alu_control.v
+1743631763 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/alu.v
+1743631763 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/alu_control.v
 1741156226 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/branch_unit.v
-1741251927 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/control_unit.v
-1741156226 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/cpu.v
+1743601098 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/control_unit.v
+1743631763 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/cpu.v
 1741156226 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/immediate_extend_unit.v
 1741156226 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/mux_2.v
 1741156226 /users/students/r1015498/Downloads/CA_Exercise_2025/CA_Exercises/Verilog/RTL/pc.v
